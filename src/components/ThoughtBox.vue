@@ -7,19 +7,19 @@
       v-model="newThought"
       @keydown.enter="submitThought"
       placeholder="생각을 적고 날려보세요..."
-      class="w-200 h-14 p-4 rounded-lg text-grey text-4xl font-medium placeholder-gray-500"
+      class="w-100 h-14 p-4 rounded-lg text-grey text-4xl font-medium placeholder-gray-500 overflow-hidden text-ellipsis"
     />
     <button @click="submitThought" class="mt-2 px-4 py-2 bg-purple-600 rounded text-white">
       우주로 날리기 🚀
     </button>
 
     <!-- 생각들이 떠오르는 부분 -->
-    <div class="relative mt-10 w-full h-[300px] overflow-hidden">
+    <div class="relative mt-10 w-full h-[300px] overflow-hidden flex justify-center">
       <div
         v-for="thought in thoughts"
         :key="thought.id"
-        class="absolute animate-float text-white opacity-70"
-        :style="{ top: thought.top + 'px', left: thought.left + 'px' }"
+        class="absolute animate-float text-white opacity-70 text-center"
+        :style="{ top: thought.top + 'px', transform: `translateX(${thought.offsetX}px)` }"
       >
         {{ thought.text }}
       </div>
@@ -49,7 +49,7 @@ function submitThought() {
     id: Date.now(),
     text: newThought.value,
     top: Math.random() * 200, // 화면 범위 내 위치 설정
-    left: Math.random() * 300, // 화면 범위 내 위치 설정
+    offsetX: (Math.random() * 200) - 100,
   }
 
   thoughts.value.push(thought)
@@ -70,14 +70,15 @@ function removeThought(id:number) {
 <style scoped>
 @keyframes float {
   0% {
-    transform: translateY(0);
+    transform: translateY(0) translateX(var(--offset-x, 0));
     opacity: 0.8;
   }
   100% {
-    transform: translateY(-100px);
+    transform: translateY(-100px) translateX(var(--offset-x, 0));
     opacity: 0;
   }
 }
+
 
 .animate-float {
   animation: float 4s ease-out forwards;
