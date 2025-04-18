@@ -1,51 +1,65 @@
+<!-- src/components/ThoughtSender.vue -->
 <template>
-  <div class="w-full max-w-xl flex flex-col items-center">
-    <textarea
-      v-model="thought"
+  <div>
+    <input
+      v-model="newThought"
+      @keydown.enter="submitThought"
       placeholder="생각을 적고 날려보세요..."
-      class="w-full h-32 p-4 text-black rounded-lg shadow-md resize-none"
+      class="w-full p-2 rounded text-black"
     />
 
-    <button
-      @click="clearThought"
-      class="mt-4 bg-purple-700 hover:bg-purple-800 text-white px-6 py-2 rounded-full shadow-lg transition"
-    >
-      🚀 지워버리기
+    <button @click="submitThought" class="mt-2 px-4 py-2 bg-purple-600 rounded text-white">
+      우주로 날리기 🚀
     </button>
 
-    <transition name="fade">
-      <div v-if="launched" class="mt-6 text-xl text-center animate-pulse">
-        🛸 우주로 전송 중...
+    <div class="relative mt-10 w-full h-[300px] overflow-hidden">
+      <div
+        v-for="thought in thoughts"
+        :key="thought.id"
+        class="absolute animate-float text-white opacity-70"
+        :style="{ top: thought.top + 'px', left: thought.left + 'px' }"
+      >
+        {{ thought.text }}
       </div>
-    </transition>
+    </div>
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
+// src/components/ThoughtSender.vue
 import { ref } from 'vue'
 
-const thought = ref('')
-const launched = ref(false)
+const newThought = ref('')
+const thoughts = ref([])
 
-const clearThought = () => {
-  if (thought.value.trim() === '') return
-  launched.value = true
+function submitThought() {
+  if (!newThought.value.trim()) return
 
-  // 간단한 애니메이션 연출 후 생각 초기화
-  setTimeout(() => {
-    thought.value = ''
-    launched.value = false
-  }, 2000)
+  thoughts.value.push({
+    id: Date.now(),
+    text: newThought.value,
+    top: Math.random() * 200,
+    left: Math.random() * 300,
+  })
+
+  // thoughts.push 이후에 비우기
+  newThought.value = ''
 }
 </script>
 
 <style scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 1s;
+@keyframes float {
+  0% {
+    transform: translateY(0);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
 }
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
+
+.animate-float {
+  animation: float 4s ease-out forwards;
 }
 </style>
