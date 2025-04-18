@@ -1,4 +1,3 @@
-<!-- src/components/ThoughtSender.vue -->
 <template>
   <div>
     <input
@@ -12,6 +11,7 @@
       우주로 날리기 🚀
     </button>
 
+    <!-- 생각들이 떠오르는 부분 -->
     <div class="relative mt-10 w-full h-[300px] overflow-hidden">
       <div
         v-for="thought in thoughts"
@@ -26,7 +26,6 @@
 </template>
 
 <script setup>
-// src/components/ThoughtSender.vue
 import { ref } from 'vue'
 
 const newThought = ref('')
@@ -35,15 +34,25 @@ const thoughts = ref([])
 function submitThought() {
   if (!newThought.value.trim()) return
 
-  thoughts.value.push({
+  const thought = {
     id: Date.now(),
     text: newThought.value,
-    top: Math.random() * 200,
-    left: Math.random() * 300,
-  })
+    top: Math.random() * 200, // 화면 범위 내 위치 설정
+    left: Math.random() * 300, // 화면 범위 내 위치 설정
+  }
 
-  // thoughts.push 이후에 비우기
-  newThought.value = ''
+  thoughts.value.push(thought)
+
+  // 4초 후에 해당 생각 삭제 (애니메이션이 끝난 후)
+  setTimeout(() => {
+    removeThought(thought.id)
+  }, 4000)
+
+  newThought.value = ''  // 비우기
+}
+
+function removeThought(id) {
+  thoughts.value = thoughts.value.filter(thought => thought.id !== id)  // 생각 삭제
 }
 </script>
 
