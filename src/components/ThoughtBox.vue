@@ -27,11 +27,20 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
 
+interface Thought {
+    id: number;
+    text: string;
+    top: number;
+    left: number;
+}
+  
+
+const thoughts = ref<Thought[]>([]);
+
 const newThought = ref('')
-const thoughts = ref([])
 
 function submitThought() {
   if (!newThought.value.trim()) return
@@ -53,7 +62,7 @@ function submitThought() {
   newThought.value = ''  // 비우기
 }
 
-function removeThought(id) {
+function removeThought(id:number) {
   thoughts.value = thoughts.value.filter(thought => thought.id !== id)  // 생각 삭제
 }
 </script>
