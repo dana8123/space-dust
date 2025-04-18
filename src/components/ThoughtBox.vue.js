@@ -31,12 +31,13 @@ __VLS_asFunctionalElement(__VLS_intrinsicElements.div, __VLS_intrinsicElements.d
 __VLS_asFunctionalElement(__VLS_intrinsicElements.input)({
     ...{ onKeydown: (__VLS_ctx.submitThought) },
     placeholder: "생각을 적고 날려보세요...",
-    ...{ class: "w-100 h-14 p-4 rounded-lg text-grey text-4xl font-medium placeholder-gray-500 overflow-hidden text-ellipsis" },
+    ...{ class: "w-100 h-14 p-4 rounded-none text-grey text-4xl font-medium placeholder-gray-500 overflow-hidden text-ellipsis border-t-0 border-l-0 border-r-0 border-b-2 border-purple-300 focus:border-purple-500 focus:outline-none bg-transparent" },
 });
 (__VLS_ctx.newThought);
 __VLS_asFunctionalElement(__VLS_intrinsicElements.button, __VLS_intrinsicElements.button)({
     ...{ onClick: (__VLS_ctx.submitThought) },
-    ...{ class: "mt-2 px-4 py-2 bg-purple-600 rounded text-white" },
+    ...{ class: "mt-2 px-4 py-2 bg-purple-600 rounded text-white appearance-none" },
+    ...{ style: {} },
 });
 __VLS_asFunctionalElement(__VLS_intrinsicElements.div, __VLS_intrinsicElements.div)({
     ...{ class: "relative mt-10 w-full h-[300px] overflow-hidden flex justify-center" },
@@ -52,19 +53,28 @@ for (const [thought] of __VLS_getVForSourceType((__VLS_ctx.thoughts))) {
 /** @type {__VLS_StyleScopedClasses['w-100']} */ ;
 /** @type {__VLS_StyleScopedClasses['h-14']} */ ;
 /** @type {__VLS_StyleScopedClasses['p-4']} */ ;
-/** @type {__VLS_StyleScopedClasses['rounded-lg']} */ ;
+/** @type {__VLS_StyleScopedClasses['rounded-none']} */ ;
 /** @type {__VLS_StyleScopedClasses['text-grey']} */ ;
 /** @type {__VLS_StyleScopedClasses['text-4xl']} */ ;
 /** @type {__VLS_StyleScopedClasses['font-medium']} */ ;
 /** @type {__VLS_StyleScopedClasses['placeholder-gray-500']} */ ;
 /** @type {__VLS_StyleScopedClasses['overflow-hidden']} */ ;
 /** @type {__VLS_StyleScopedClasses['text-ellipsis']} */ ;
+/** @type {__VLS_StyleScopedClasses['border-t-0']} */ ;
+/** @type {__VLS_StyleScopedClasses['border-l-0']} */ ;
+/** @type {__VLS_StyleScopedClasses['border-r-0']} */ ;
+/** @type {__VLS_StyleScopedClasses['border-b-2']} */ ;
+/** @type {__VLS_StyleScopedClasses['border-purple-300']} */ ;
+/** @type {__VLS_StyleScopedClasses['focus:border-purple-500']} */ ;
+/** @type {__VLS_StyleScopedClasses['focus:outline-none']} */ ;
+/** @type {__VLS_StyleScopedClasses['bg-transparent']} */ ;
 /** @type {__VLS_StyleScopedClasses['mt-2']} */ ;
 /** @type {__VLS_StyleScopedClasses['px-4']} */ ;
 /** @type {__VLS_StyleScopedClasses['py-2']} */ ;
 /** @type {__VLS_StyleScopedClasses['bg-purple-600']} */ ;
 /** @type {__VLS_StyleScopedClasses['rounded']} */ ;
 /** @type {__VLS_StyleScopedClasses['text-white']} */ ;
+/** @type {__VLS_StyleScopedClasses['appearance-none']} */ ;
 /** @type {__VLS_StyleScopedClasses['relative']} */ ;
 /** @type {__VLS_StyleScopedClasses['mt-10']} */ ;
 /** @type {__VLS_StyleScopedClasses['w-full']} */ ;
