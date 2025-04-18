@@ -5,12 +5,14 @@
       지금 하는 생각...<br />
       우주의 먼지로 만들어버리세요👽
     </h1>
-    
-    <div class="left-1/2 transform -translate-x-1/2 text-sm opacity-70 z-20">
-      <p>🪐 "그건 토성에 두고 오세요."</p>
+
+    <div>
+      <ThoughtBox class="fixed bottom-20 left-1/2 transform -translate-x-1/2 z-10" />
     </div>
 
-    <ThoughtBox class="fixed bottom-20 left-1/2 transform -translate-x-1/2 z-10" />
+    <div class="absolute left-1/2 transform translate-x-[-50%] text-sm opacity-70 z-20">
+      <p>🪐 "그건 토성에 두고 오세요."</p>
+    </div>
 
   </div>
 </template>

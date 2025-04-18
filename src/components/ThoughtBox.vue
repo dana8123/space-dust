@@ -7,7 +7,7 @@
       v-model="newThought"
       @keydown.enter="submitThought"
       placeholder="생각을 적고 날려보세요..."
-      class="w-full h-14 p-4 rounded-lg text-grey text-4xl font-medium placeholder-gray-500"
+      class="w-200 h-14 p-4 rounded-lg text-grey text-4xl font-medium placeholder-gray-500"
     />
     <button @click="submitThought" class="mt-2 px-4 py-2 bg-purple-600 rounded text-white">
       우주로 날리기 🚀
